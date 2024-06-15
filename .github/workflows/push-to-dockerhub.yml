@@ -36,7 +36,7 @@ jobs:
         with:
           context: frontend
           push: true
-          tags: ${{env.frontend}}:${SHORT_SHA}
+          tags: ${{env.frontend}}:${{SHORT_SHA}}
           cache-from: type=registry,ref=${{env.frontend}}:latest
           cache-to: type=inline
           platforms: linux/x86_64
@@ -46,7 +46,7 @@ jobs:
         with:
           context: backend
           push: true
-          tags: ${{env.backend}}:${SHORT_SHA}
+          tags: ${{env.backend}}:${{SHORT_SHA}}
           cache-from: type=registry,ref=${{env.backend}}:latest
           cache-to: type=inline
           platforms: linux/x86_64
