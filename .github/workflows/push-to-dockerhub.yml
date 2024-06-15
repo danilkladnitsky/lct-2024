@@ -8,9 +8,10 @@ on:
 jobs:
   push-to-registry:
     name: Build and publish images to Docker Registry
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     env:
       frontend: ${{secrets.DOCKERHUB_USERNAME}}/lct-2024.frontend
+      backend: ${{secrets.DOCKERHUB_USERNAME}}/lct-2024.backend
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -36,3 +37,14 @@ jobs:
           cache-from: type=registry,ref=${{env.frontend}}:${{github.sha}}
           cache-to: type=inline
           platforms: linux/x86_64
+      -
+        name: Push backend image
+        uses: docker/build-push-action@v4
+        with:
+          context: backend
+          push: true
+          tags: ${{env.backend}}:latest
+          cache-from: type=registry,ref=${{env.backend}}:${{github.sha}}
+          cache-to: type=inline
+          platforms: linux/x86_64
+    
