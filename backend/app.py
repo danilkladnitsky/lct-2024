@@ -5,12 +5,12 @@ from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
 
 
-@app.route('/healthcheck', methods=['GET'])
+@app.route('/api/healthcheck', methods=['GET'])
 def healthcheck():
     return 'OK'
 
 
-@app.route('/get_object', methods=['POST'])
+@app.route('/api/get_object', methods=['POST'])
 def get_object():
     data = request.get_json()
 
@@ -23,7 +23,7 @@ def get_object():
     return jsonify({"message": "JSON received", "data": shool.objects}), 200
 
 
-@app.route('/')
+@app.route('/render')
 def index():
 
     with open('example_request.json', 'r', encoding='utf-8') as file:
