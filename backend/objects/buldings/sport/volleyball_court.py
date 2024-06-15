@@ -1,10 +1,10 @@
-from objects.buldings.bulding import Building
-from tools.polygons_action import sort_polygon_points
-from tools.colors import colors_dict
+from backend.objects.buldings.bulding import Building
+from backend.tools.colors import colors_dict
 
 
-class MeetSquare(Building):
-    color = colors_dict['burlywood']
+
+class VolleyballCourt(Building):
+    color = colors_dict['cyan']
 
     def build(self, coords):
 

@@ -1,7 +1,7 @@
-from tools.polygons_action import sort_polygon_points
-from tools.polygons_action import polygon_area
-from tools.polygons_action import find_polygon_center
-from tools.colors import colors_dict
+from backend.tools.polygons_action import sort_polygon_points
+from backend.tools.polygons_action import polygon_area
+from backend.tools.polygons_action import find_polygon_center
+from backend.tools.colors import colors_dict
 
 class Zone:
     def __init__(self, coords):

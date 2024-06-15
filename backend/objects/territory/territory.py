@@ -1,6 +1,6 @@
 
 
-from tools.colors import colors_dict
+from backend.tools.colors import colors_dict
 class Territory:
     def __init__(self, configuration_dict):
         self.configuration = configuration_dict
