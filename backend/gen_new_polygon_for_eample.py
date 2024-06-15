@@ -17,7 +17,7 @@ import json
 with open('example_request.json', 'r', encoding='utf-8') as file:
     data = json.load(file)
 
-data['polygon_points'] = generate_polygon(12, 1.5, (0,0))
+data['polygon_points'] = generate_polygon(12, 1.6, (0,0))
 
 with open('example_request.json', 'w', encoding='utf-8') as file:
     json.dump(data, file, indent = 4)

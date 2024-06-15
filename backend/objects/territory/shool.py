@@ -50,7 +50,7 @@ class Shool(Territory):
         # self.bulding_main_zone = Building(self.levels_num, self.levels_hight, self.square_size)
         # self.bulding_main_zone.build(self.zone_list[0].center_coords)
         # self.objects.extend(self.bulding_main_zone.objects)
-        meet_square_size = get_random_dimensions( self.configuration['human_capacity']*0.5*0.001)
+        meet_square_size = get_random_dimensions( self.configuration['human_capacity']*0.3*0.001)
         recktangles_to_place.append(meet_square_size)
 
         if self.configuration['has_junior'] and not(self.configuration['has_junior_hight_connection']):

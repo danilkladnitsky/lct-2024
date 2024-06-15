@@ -1,6 +1,6 @@
 from objects.buldings.bulding import Building
 from tools.colors import colors_dict
-from tools.shape import calculate_u_shape
+from tools.shape import calculate_T_shape
 
 class ShoolMain(Building):
     color = colors_dict['gray']
@@ -9,7 +9,7 @@ class ShoolMain(Building):
     def build(self, coords):
         print(coords)
         self.coords = coords
-        coords = calculate_u_shape(coords)
+        coords = calculate_T_shape(coords)
         points = []
         for j in coords:
             points.append({'x': j[0], 'z': j[1]})

@@ -20,7 +20,7 @@ def get_object():
     light_position = {'x': 18, 'y': 18, 'z': 18}
     with open('example_responce.json', 'w') as json_file:
         json.dump(shool.objects, json_file, indent=4)
-    return jsonify({"message": "JSON received", "data": shool.objects}), 200
+    return render_template('index.html', objects=shool.objects, light_position=light_position)
 
 
 @app.route('/')
