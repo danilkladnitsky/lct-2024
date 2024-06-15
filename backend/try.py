@@ -6,7 +6,7 @@ with open('example_request.json', 'r', encoding='utf-8') as file:
     data = json.load(file)
 
 # URL для POST запроса
-url = 'http://127.0.0.1:5000/get_object'  # замените на необходимый URL
+url = 'http://0.0.0.0:3000/get_object'  # замените на необходимый URL
 
 # Отправка POST запроса с данными
 response = requests.post(url, json=data)
