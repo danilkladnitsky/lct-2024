@@ -70,9 +70,6 @@ jobs:
         script: |
           git clone https://github.com/danilkladnitsky/lct-2024.git
           cd lct-2024
-          kubectl apply -f k8s/backend/deployment.yml
-          kubectl apply -f k8s/backend/service.yml
-          kubectl apply -f k8s/frontend/deployment.yml
-          kubectl apply -f k8s/frontend/service.yml
+          kubectl apply -f k8s
           kubectl rollout restart -n default deployment backend-deployment
           kubectl rollout restart -n default deployment frontend-deployment
