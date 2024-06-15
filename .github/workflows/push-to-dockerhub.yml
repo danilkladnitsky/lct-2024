@@ -100,9 +100,11 @@ jobs:
         password: ${{ secrets.SERVER_PASSWORD }}
         port: ${{ secrets.SERVER_PORT }}
         script: |
-          rm -rf ./lct-2024
           git clone https://github.com/danilkladnitsky/lct-2024.git
           cd lct-2024
           kubectl apply -f k8s
+          kubectl apply -f k8s/frontend/ingress.yml
           kubectl rollout restart -n default deployment backend-deployment
           kubectl rollout restart -n default deployment frontend-deployment
+          cd ..
+          rm -rf lct-2024
