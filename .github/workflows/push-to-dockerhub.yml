@@ -74,6 +74,8 @@ jobs:
           platforms: linux/x86_64
           build-args: |
             "VITE_SHA=${{env.SHORT_SHA}}"
+          secrets: |
+           "VITE_SHA=${{env.SHORT_SHA}}"
       -
         name: Push backend image
         uses: docker/build-push-action@v4
