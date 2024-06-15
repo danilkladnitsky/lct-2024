@@ -3,7 +3,7 @@ name: Push to Dockerhub
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   push-to-registry:
