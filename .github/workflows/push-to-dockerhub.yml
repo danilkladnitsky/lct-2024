@@ -68,6 +68,7 @@ jobs:
         password: ${{ secrets.SERVER_PASSWORD }}
         port: ${{ secrets.SERVER_PORT }}
         script: |
+          rm -rf ./lct-2024
           git clone https://github.com/danilkladnitsky/lct-2024.git
           cd lct-2024
           kubectl apply -f k8s
