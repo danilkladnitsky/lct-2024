@@ -1,0 +1,68 @@
+{
+    "polygon_points": [
+        [
+            1.5,
+            0.0
+        ],
+        [
+            1.299038105676658,
+            0.7499999999999999
+        ],
+        [
+            0.7500000000000002,
+            1.299038105676658
+        ],
+        [
+            9.184850993605148e-17,
+            1.5
+        ],
+        [
+            -0.7499999999999997,
+            1.299038105676658
+        ],
+        [
+            -1.2990381056766578,
+            0.7500000000000004
+        ],
+        [
+            -1.5,
+            1.8369701987210297e-16
+        ],
+        [
+            -1.2990381056766582,
+            -0.7499999999999996
+        ],
+        [
+            -0.7500000000000007,
+            -1.2990381056766578
+        ],
+        [
+            -2.755455298081545e-16,
+            -1.5
+        ],
+        [
+            0.749999999999999,
+            -1.2990381056766584
+        ],
+        [
+            1.2990381056766576,
+            -0.7500000000000007
+        ]
+    ],
+    "level_height": 0.042,
+    "levels_num": 4,
+    "square_size": 1617,
+    "human_capacity": 300,
+    "territory_type": "shool",
+    "has_junior": true,
+    "has_junior_hight_connection": true,
+    "has_junior_assembly_hall": true,
+    "has_junior_dining_room": false,
+    "has_junior_gym": false,
+    "has_swimming_pool": false,
+    "has_volleyball_court": true,
+    "has_basketball_court": true,
+    "has_addition_sport_squate": false,
+    "has_relax_zone": true,
+    "has_addtional_ground_zone": false
+}
