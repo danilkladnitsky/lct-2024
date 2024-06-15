@@ -4,6 +4,12 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
+
+@app.route('/healthcheck', methods=['GET'])
+def healthcheck():
+    return 'OK'
+
+
 @app.route('/get_object', methods=['POST'])
 def get_object():
     data = request.get_json()
@@ -15,7 +21,6 @@ def get_object():
     with open('example_responce.json', 'w') as json_file:
         json.dump(shool.objects, json_file, indent=4)
     return jsonify({"message": "JSON received", "data": shool.objects}), 200
-
 
 
 @app.route('/')
