@@ -1,4 +1,4 @@
-import { Text, ThemeProvider } from "@gravity-ui/uikit";
+import { Label, Text, ThemeProvider } from "@gravity-ui/uikit";
 
 import { BuildingMetrics, MapViewer, UploadSettingsForm } from "@/modules";
 
@@ -14,6 +14,17 @@ function App() {
   return (
     <ThemeProvider>
       <div className={styles.app}>
+        <div className={styles.releaseTag}>
+          Версия:
+          <a
+            target="_blank"
+            href="https://github.com/danilkladnitsky/lct-2024/commit/178f67"
+          >
+            <Label interactive theme="info">
+              commit: #345sf1
+            </Label>
+          </a>
+        </div>
         <div className={styles.header}>
           <Group
             css={{ justifyContent: "space-between", alignItems: "center" }}
