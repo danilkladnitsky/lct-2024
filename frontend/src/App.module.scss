@@ -5,21 +5,42 @@
     max-width: 100%;
 }
 
+.layout {
+   display: flex;
+    column-gap: 16px;
+    height: calc(100vh - 96px);
+}
+
 .header {
     height: 36px;
+    max-width: 600px;
+    margin-bottom: 16px;
+}
+
+.left {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-height: calc(100vh - 96px);;
 }
 
 .settingsForm {
-    position: absolute;
-    top: 52px;
-    width: 600px;
-    max-height: calc(100% - 52px);
     z-index: 2;
+    max-height: inherit;
+}
+
+.right {
+    flex: 1;
+    position: relative;
+}
+
+.mapViewer {
 }
 
 .metrics {
     position: absolute;
-    bottom: 0px;
-    right: 0px;
+    bottom: 16px;
+    right: 16px;
     z-index: 1;
 }
