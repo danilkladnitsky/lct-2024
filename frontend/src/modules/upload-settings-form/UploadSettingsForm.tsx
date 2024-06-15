@@ -1,20 +1,25 @@
-import { useForm } from "react-hook-form";
-
 import { DEFAULT_UPLOAD_FORM_SETTINGS } from "@/shared/const";
 import { UploadSettingsFormFields } from "@/shared/types";
-import { Checkbox, SectionLabel, Stack, TextField } from "@/shared/ui";
+import {
+  Checkbox,
+  CloseButton,
+  SectionLabel,
+  Stack,
+  TextField,
+} from "@/shared/ui";
 import { Button, Card, RadioButton } from "@gravity-ui/uikit";
+import classNames from "classnames";
+import { useForm } from "react-hook-form";
 
 import styles from "./UploadSettingsForm.module.scss";
 
-export const UploadSettingsForm = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    getValues,
-    formState: { errors },
-  } = useForm<UploadSettingsFormFields>({
+interface Props {
+  close: () => void;
+  className?: string;
+}
+
+export const UploadSettingsForm = ({ close, className }: Props) => {
+  const { register, getValues } = useForm<UploadSettingsFormFields>({
     defaultValues: DEFAULT_UPLOAD_FORM_SETTINGS,
     mode: "onChange",
   });
@@ -24,10 +29,11 @@ export const UploadSettingsForm = () => {
   };
 
   return (
-    <Card className={styles.form}>
+    <Card className={classNames(styles.form, className)}>
+      <CloseButton onClick={close} className={styles.closeButton} />
+      <SectionLabel>Технико-экономические характеристики</SectionLabel>
       <Stack className={styles.fields} gap={16}>
         <Stack>
-          <SectionLabel>Технико-экономические характеристики</SectionLabel>
           <TextField label="Высота этажа" {...register("level_height")} />
           <TextField label="Количество этажей" {...register("levels_num")} />
           <TextField label="Площадь" {...register("square_size")} />

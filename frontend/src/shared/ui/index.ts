@@ -1,7 +1,9 @@
 export * from './Align/Align';
+export * from './ButtonIcon/ButtonIcon';
+export * from './Center/Center';
 export * from './Checkbox/Checkbox';
+export * from './CloseButton/CloseButton';
 export * from './Group/Group';
 export * from './SectionLabel/SectionLabel';
 export * from './Stack/Stack';
 export * from './TextField/TextField';
-

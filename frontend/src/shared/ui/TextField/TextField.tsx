@@ -24,7 +24,10 @@ export const TextField = forwardRef<HTMLInputElement, Props>(
         disabled={isLoading}
         hasClear
         startContent={
-          <Text style={{ width: 140, textAlign: "left", padding: "0px 12px" }}>
+          <Text
+            variant="body-1"
+            style={{ width: 160, textAlign: "left", padding: "0px 12px" }}
+          >
             {label}
           </Text>
         }
