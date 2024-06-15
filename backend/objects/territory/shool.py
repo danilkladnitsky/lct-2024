@@ -11,7 +11,7 @@ from backend.objects.buldings.sport.basketball_court import BasketballCourt
 from backend.objects.buldings.main_zone.shool_main import ShoolMain
 from backend.objects.buldings.main_zone.shool_junior import ShoolJunior
 from backend.objects.buldings.main_zone.meet_square import MeetSquare
-
+from backend.tools.decorators import retry_on_exception
 
 from backend.tools.polygons_action import place_rectangles
 from backend.tools.polygons_action import align_rectangles
@@ -27,8 +27,10 @@ class Shool(Territory):
         'relax_zone': colors_dict['silver'],
         'ground_zone': colors_dict['chocolate']
     }
-
+    @retry_on_exception(20)
     def total_rebuild(self):
+        self.objects = []
+
         self.create_ground_polygon()
         self.devide_territory()
         self.build_zone()

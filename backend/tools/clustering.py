@@ -2,12 +2,12 @@ import numpy as np
 from sklearn.cluster import KMeans
 from shapely.geometry import Polygon, MultiPolygon
 from shapely.ops import unary_union
-
+from tools.decorators import retry_on_exception
 
 def get_centroid(triangle):
     return np.mean(triangle, axis=0)
 
-
+@retry_on_exception(10)
 def kmeans_clustering(triangles, target_count):
     # Вычисляем центроиды треугольников
     centroids = np.array([get_centroid(tri) for tri in triangles])
