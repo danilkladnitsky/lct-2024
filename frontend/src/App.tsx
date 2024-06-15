@@ -1,6 +1,6 @@
 import { Text, ThemeProvider } from "@gravity-ui/uikit";
 
-import { BuildingMetrics, UploadSettingsForm } from "@/modules";
+import { BuildingMetrics, MapViewer, UploadSettingsForm } from "@/modules";
 
 import { ArrowShapeUpFromLine } from "@gravity-ui/icons";
 import { useState } from "react";
@@ -15,10 +15,10 @@ function App() {
     <ThemeProvider>
       <div className={styles.app}>
         <div className={styles.header}>
-          <Group css={{ alignItems: "center" }}>
-            <Text variant="header-1" style={{ maxWidth: 374, width: "100%" }}>
-              Проектировщик зданий | Южане 2
-            </Text>
+          <Group
+            css={{ justifyContent: "space-between", alignItems: "center" }}
+          >
+            <Text variant="header-1">Проектировщик зданий | Южане 2</Text>
             <ButtonIcon
               isLoading={formIsVisible}
               onClick={() => setFormIsVisible(true)}
@@ -27,13 +27,20 @@ function App() {
             />
           </Group>
         </div>
-        {formIsVisible && (
-          <UploadSettingsForm
-            close={() => setFormIsVisible(false)}
-            className={styles.settingsForm}
-          />
-        )}
-        <BuildingMetrics className={styles.metrics} />
+        <div className={styles.layout}>
+          {formIsVisible && (
+            <div className={styles.left}>
+              <UploadSettingsForm
+                close={() => setFormIsVisible(false)}
+                className={styles.settingsForm}
+              />
+            </div>
+          )}
+          <div className={styles.right}>
+            <MapViewer className={styles.mapViewer} />
+            <BuildingMetrics className={styles.metrics} />
+          </div>
+        </div>
       </div>
     </ThemeProvider>
   );
