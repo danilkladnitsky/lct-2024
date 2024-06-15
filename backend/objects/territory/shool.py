@@ -121,8 +121,8 @@ class Shool(Territory):
         coords = align_rectangles(coords)
         # coords[2:3] = align_rectangles(coords[2:3])
 
-        self.sport_race.build(coords[1])
-        self.football_field.build(coords[0])
+        self.sport_race.build(coords[0])
+        self.football_field.build(coords[1])
 
         self.objects.extend(self.sport_race.objects)
         self.objects.extend(self.football_field.objects)

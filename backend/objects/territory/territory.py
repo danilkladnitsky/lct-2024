@@ -23,6 +23,6 @@ class Territory:
                 'type': 'polygon',
                 'depth': depth,
                 'color': colors_dict['chartreuse'],
-                'position': {'x': 0, 'y': -depth*2, 'z': 0},
+                'position': {'x': 0, 'y': -0.1, 'z': 0},
                 'points':  points,
                 'name': 'ground'})

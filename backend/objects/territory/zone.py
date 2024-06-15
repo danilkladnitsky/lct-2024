@@ -30,7 +30,7 @@ class Zone:
             'type': 'polygon',
             'depth': depth,
             'color': self.color,
-            'position': {'x': 0, 'y': -depth, 'z': 0},
+            'position': {'x': 0, 'y': -0.01, 'z': 0},
             'points': points,
             }
 

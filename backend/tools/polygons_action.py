@@ -95,8 +95,8 @@ def place_rectangles(polygon_coords, rectangles):
     if not polygon.is_valid:
         raise ValueError("Невалидные координаты полигона")
 
-    # Список для хранения размещенных прямоугольников
-    placed_rectangles = []
+    # Список для хранения размещенных прямоугольников и их исходных индексов
+    placed_rectangles = [None] * len(rectangles)
 
     # Стартовые координаты для размещения
     start_x, start_y = polygon.bounds[0], polygon.bounds[1]
@@ -124,10 +124,10 @@ def place_rectangles(polygon_coords, rectangles):
     current_x, current_y = start_x, start_y
     max_y_in_row = start_y
 
-    for rect_width, rect_height in rectangles:
+    for index, (rect_width, rect_height) in enumerate(rectangles):
         rect = try_place_rectangle_stacked(polygon, rect_width, rect_height, current_x, current_y)
         if rect:
-            placed_rectangles.append(rect)
+            placed_rectangles[index] = rect
             polygon = polygon.difference(rect)
             current_x += rect_width
             max_y_in_row = max(max_y_in_row, current_y + rect_height)
@@ -140,30 +140,31 @@ def place_rectangles(polygon_coords, rectangles):
             # Попробуем разместить прямоугольник произвольным образом
             rect = try_place_rectangle(polygon, rect_width, rect_height)
             if rect:
-                placed_rectangles.append(rect)
+                placed_rectangles[index] = rect
                 polygon = polygon.difference(rect)
             else:
                 raise ValueError(f"Не удалось разместить прямоугольник размером {(rect_width, rect_height)}")
 
-    # Возвращаем координаты размещенных прямоугольников
+    # Возвращаем координаты размещенных прямоугольников в том же порядке, что и на входе
     return [list(rect.exterior.coords)[:-1] for rect in placed_rectangles]
+
 
 def calculate_area(polygon):
     return polygon.area
 
 @retry_on_exception(10)
 def align_rectangles(rectangles):
-    # Преобразуем входные координаты в объекты Polygon и вычисляем их площади
-    polygons = [(Polygon(rect), calculate_area(Polygon(rect))) for rect in rectangles]
+    # Преобразуем входные координаты в объекты Polygon и вычисляем их площади с индексами
+    polygons = [(i, Polygon(rect), calculate_area(Polygon(rect))) for i, rect in enumerate(rectangles)]
 
     # Находим наибольший прямоугольник
-    largest_polygon, largest_area = max(polygons, key=lambda x: x[1])
-    polygons.remove((largest_polygon, largest_area))
+    largest_index, largest_polygon, largest_area = max(polygons, key=lambda x: x[2])
+    polygons.remove((largest_index, largest_polygon, largest_area))
 
     # Список для хранения сдвинутых прямоугольников
-    aligned_rectangles = [list(largest_polygon.exterior.coords)[:-1]]
+    aligned_rectangles = {largest_index: list(largest_polygon.exterior.coords)[:-1]}
 
-    for polygon, _ in polygons:
+    for index, polygon, _ in polygons:
         # Перемещаем текущий прямоугольник, чтобы он присоединился к большому по внешней грани
         min_dist = float('inf')
         best_translation = None
@@ -181,10 +182,11 @@ def align_rectangles(rectangles):
 
         if best_translation:
             translated_polygon = translate(polygon, xoff=best_translation[0], yoff=best_translation[1])
-            aligned_rectangles.append(list(translated_polygon.exterior.coords)[:-1])
+            aligned_rectangles[index] = list(translated_polygon.exterior.coords)[:-1]
             largest_polygon = largest_polygon.union(translated_polygon)
 
-    return aligned_rectangles
+    # Возвращаем прямоугольники в первоначальном порядке
+    return [aligned_rectangles[i] for i in sorted(aligned_rectangles)]
 
 
 def get_random_dimensions(area):
