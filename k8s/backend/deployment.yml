@@ -29,13 +29,13 @@ spec:
             - containerPort: 3000
           livenessProbe:
             httpGet:
-              path: /api/healthcheck
+              path: /healthcheck
               port: 3000
             initialDelaySeconds: 5
             periodSeconds: 10
           readinessProbe:
             httpGet:
-              path: /api/healthcheck
+              path: /healthcheck
               port: 3000
             initialDelaySeconds: 10
             periodSeconds: 5

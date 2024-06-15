@@ -5,12 +5,12 @@ from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
 
 
-@app.route('/api/healthcheck', methods=['GET'])
+@app.route('/healthcheck', methods=['GET'])
 def healthcheck():
     return 'OK'
 
 
-@app.route('/api/get_object', methods=['POST'])
+@app.route('/get_object', methods=['POST'])
 def get_object():
     data = request.get_json()
 
