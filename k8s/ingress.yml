@@ -1,25 +1,26 @@
-apiVersion: networking.k8s.io/v1   
-kind: Ingress   
-metadata:   
-  name: frontend-ingress  
-  annotations:   
-    nginx.ingress.kubernetes.io/rewrite-target: /$1   
-spec:   
-  rules:   
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
     - host: k8s.kladnitsky.ru
-      http:   
-        paths:   
-          - path: /  
-            pathType: Prefix   
-            backend:   
-              service:   
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
                 name: frontend-service
-                port:   
+                port:
                   number: 8080
           - path: /api
-            pathType: Prefix   
-            backend:   
-              service:   
+            pathType: Prefix
+            backend:
+              service:
                 name: backend-service
-                port:   
+                port:
                   number: 3000
