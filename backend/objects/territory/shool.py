@@ -1,21 +1,21 @@
-from backend.objects.territory.territory import Territory
-from backend.tools.traingulating import triangulate_polygon
-from backend.tools.clustering import kmeans_clustering
-from backend.tools.polygons_action import multiply_polygon_vertices
-from backend.tools.colors import colors_dict
-from backend.objects.territory.zone import Zone
-from backend.objects.buldings.sport.sport_race import SportRace
-from backend.objects.buldings.sport.football_field import FootBallField
-from backend.objects.buldings.sport.volleyball_court import VolleyballCourt
-from backend.objects.buldings.sport.basketball_court import BasketballCourt
-from backend.objects.buldings.main_zone.shool_main import ShoolMain
-from backend.objects.buldings.main_zone.shool_junior import ShoolJunior
-from backend.objects.buldings.main_zone.meet_square import MeetSquare
-from backend.tools.decorators import retry_on_exception
+from objects.territory.territory import Territory
+from tools.traingulating import triangulate_polygon
+from tools.clustering import kmeans_clustering
+from tools.polygons_action import multiply_polygon_vertices
+from tools.colors import colors_dict
+from objects.territory.zone import Zone
+from objects.buldings.sport.sport_race import SportRace
+from objects.buldings.sport.football_field import FootBallField
+from objects.buldings.sport.volleyball_court import VolleyballCourt
+from objects.buldings.sport.basketball_court import BasketballCourt
+from objects.buldings.main_zone.shool_main import ShoolMain
+from objects.buldings.main_zone.shool_junior import ShoolJunior
+from objects.buldings.main_zone.meet_square import MeetSquare
+from tools.decorators import retry_on_exception
 
-from backend.tools.polygons_action import place_rectangles
-from backend.tools.polygons_action import align_rectangles
-from backend.tools.polygons_action import get_random_dimensions
+from tools.polygons_action import place_rectangles
+from tools.polygons_action import align_rectangles
+from tools.polygons_action import get_random_dimensions
 class Shool(Territory):
 
 

@@ -1,5 +1,5 @@
-from backend.objects.buldings.bulding import Building
-from backend.tools.colors import colors_dict
+from objects.buldings.bulding import Building
+from tools.colors import colors_dict
 
 
 class MeetSquare(Building):

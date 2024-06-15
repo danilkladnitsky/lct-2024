@@ -1,5 +1,5 @@
 import random
-from backend.tools.polygons_action import sort_polygon_points
+from tools.polygons_action import sort_polygon_points
 
 def is_point_in_triangle(pt, v1, v2, v3):
     # Проверка, находится ли точка pt внутри треугольника (v1, v2, v3)
