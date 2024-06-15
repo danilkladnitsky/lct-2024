@@ -44,3 +44,12 @@
     right: 16px;
     z-index: 1;
 }
+
+.releaseTag {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
