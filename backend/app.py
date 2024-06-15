@@ -23,7 +23,7 @@ def get_object():
     return jsonify({"message": "JSON received", "data": shool.objects}), 200
 
 
-@app.route('/view/render')
+@app.route('/render')
 def index():
     with open('example_request.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
