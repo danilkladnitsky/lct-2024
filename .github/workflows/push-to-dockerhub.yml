@@ -107,5 +107,3 @@ jobs:
           kubectl apply -f k8s/ingress.yml
           kubectl rollout restart -n default deployment backend-deployment
           kubectl rollout restart -n default deployment frontend-deployment
-          cd ..
-          rm -rf lct-2024
