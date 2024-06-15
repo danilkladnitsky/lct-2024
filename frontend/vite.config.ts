@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react()],
   define: {
     VITE_API_HOST: `'${process.env.VITE_API_HOST}'`,
-    VITE_USE_MOCK: `'${process.env.VITE_USE_MOCK}'`,
+    VITE_SHA: `'${process.env.VITE_SHA}'`,
   },
   build: {
     assetsDir: 'public',

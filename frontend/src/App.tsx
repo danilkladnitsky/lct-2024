@@ -7,6 +7,7 @@ import { useState } from "react";
 import { ButtonIcon, Group } from "./shared/ui";
 
 import styles from "./App.module.scss";
+import { APP_VERSION, APP_VERSION_LINK } from "./shared/env";
 
 function App() {
   const [formIsVisible, setFormIsVisible] = useState(true);
@@ -16,12 +17,9 @@ function App() {
       <div className={styles.app}>
         <div className={styles.releaseTag}>
           Версия:
-          <a
-            target="_blank"
-            href="https://github.com/danilkladnitsky/lct-2024/commit/178f67"
-          >
+          <a target="_blank" href={APP_VERSION_LINK}>
             <Label interactive theme="info">
-              commit: #345sf1
+              {APP_VERSION}
             </Label>
           </a>
         </div>
