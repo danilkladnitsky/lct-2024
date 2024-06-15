@@ -8,7 +8,7 @@ spec:
     - host: k8s.kladnitsky.ru
       http:
         paths:
-          - path: /lct-2024
+          - path: /
             pathType: Prefix
             backend:
               service:
