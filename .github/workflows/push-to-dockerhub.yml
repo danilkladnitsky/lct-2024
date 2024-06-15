@@ -6,7 +6,36 @@ on:
       - main
 
 jobs:
+  init:
+    runs-on: ubuntu-latest
+    name: Check changed files
+    outputs:
+      backend: ${{ steps.check_files.outputs.backend }}
+      frontend: ${{ steps.check_files.outputs.frontend }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - name: check modified files
+        id: check_files
+        run: |
+            git diff --name-only HEAD^ HEAD > files.txt
+            while IFS= read -r file; do
+              echo $file
+              if [[ $file == frontend/* ]]; then
+                echo "frontend service will be rebuilt"
+                echo "::set-output name=frontend::true"
+              elif [[ $file == backend/* ]]; then
+                echo "backend service will be rebuilt"
+                echo "::set-output name=backend::true"
+              else
+                echo "file does not belong to any service"
+              fi
+            done < files.txt
+
   push-to-registry:
+    needs: [init]
     name: Build and publish images to Docker Registry
     runs-on: ubuntu-latest
     env:
@@ -33,6 +62,7 @@ jobs:
       -
         name: Push frontend image
         uses: docker/build-push-action@v4
+        if: needs.init.outputs.frontend == 'true'
         with:
           context: frontend
           push: true
@@ -46,6 +76,7 @@ jobs:
       -
         name: Push backend image
         uses: docker/build-push-action@v4
+        if: needs.init.outputs.backend == 'true'
         with:
           context: backend
           push: true
@@ -55,6 +86,7 @@ jobs:
           cache-from: type=registry,ref=${{env.backend}}:latest
           cache-to: type=inline
           platforms: linux/x86_64
+
   update-k8s:
     needs: [push-to-registry]
     name: apply k8s configs
