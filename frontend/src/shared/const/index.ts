@@ -19,3 +19,4 @@ export const DEFAULT_UPLOAD_FORM_SETTINGS: UploadSettingsFormFields = {
     square_size: 100,
     territory_type: 'school',
 }
+

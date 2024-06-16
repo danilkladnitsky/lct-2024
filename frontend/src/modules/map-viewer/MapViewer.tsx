@@ -1,4 +1,4 @@
-import { Card, Loader, Spin } from "@gravity-ui/uikit";
+import { Card, Loader, Text } from "@gravity-ui/uikit";
 import classNames from "classnames";
 
 import styles from "./MapViewer.module.scss";
@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const MapViewer = ({ className }: Props) => {
-  const { formIsVisible } = useAppContext();
+  const { formIsVisible, renderLink } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
   const iFrameRef = useRef<HTMLIFrameElement>(null);
 
@@ -21,6 +21,16 @@ export const MapViewer = ({ className }: Props) => {
       iframeCurrent?.removeEventListener("load", () => setIsLoading(true));
     };
   }, [iframeCurrent]);
+
+  if (!renderLink) {
+    return (
+      <Card className={classNames(styles.mapViewer, className)}>
+        <div className={styles.loader}>
+          <Text variant="subheader-2">Заполните форму</Text>
+        </div>
+      </Card>
+    );
+  }
 
   return (
     <Card className={classNames(styles.mapViewer, className)}>
@@ -39,7 +49,7 @@ export const MapViewer = ({ className }: Props) => {
           width: "100%",
           opacity: isLoading ? "0" : "1",
         }}
-        src="https://api-lct-2024.kladnitsky.ru/render"
+        src={renderLink}
       />
     </Card>
   );

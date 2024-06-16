@@ -10,6 +10,7 @@ import classNames from "classnames";
 
 import styles from "./UploadSettingsForm.module.scss";
 import { useAppContext } from "@/shared/context";
+import { SelectMapArea } from "../select-map-area/SelectMapArea";
 
 interface Props {
   close: () => void;
@@ -17,10 +18,10 @@ interface Props {
 }
 
 export const UploadSettingsForm = ({ close, className }: Props) => {
-  const { registerField: register, getFields: getValues } = useAppContext();
+  const { registerField: register, generateScene } = useAppContext();
 
   const onSubmit = () => {
-    console.log(getValues());
+    generateScene();
   };
 
   return (
@@ -108,6 +109,10 @@ export const UploadSettingsForm = ({ close, className }: Props) => {
               label="Наличие хозяйственной зоны"
               {...register("has_additional_ground_zone")}
             />
+          </Stack>
+          <Stack css={{ marginLeft: 0, marginTop: 16 }}>
+            <SectionLabel>Область</SectionLabel>
+            <SelectMapArea />
           </Stack>
         </Stack>
       </Stack>

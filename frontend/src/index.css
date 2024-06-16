@@ -31,3 +31,11 @@ body {
 }
 
 ::-webkit-scrollbar {}
+
+.mapboxgl-control-container {
+  display: none;
+}
+
+div[mapboxgl-children] {
+  display: none;
+}
