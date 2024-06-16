@@ -130,11 +130,3 @@ jobs:
         username: ${{ secrets.SERVER_USERNAME }}
         password: ${{ secrets.SERVER_PASSWORD }}
         port: ${{ secrets.SERVER_PORT }}
-        script: |
-          git clone https://github.com/danilkladnitsky/lct-2024.git
-          cd lct-2024
-          sudo cp nginx/default /etc/nginx/sites-available/default
-          sudo systemctl restart nginx
-
-          cd ..
-          rm -rf lct-2024
