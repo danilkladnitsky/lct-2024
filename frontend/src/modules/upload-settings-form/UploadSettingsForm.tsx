@@ -1,5 +1,3 @@
-import { DEFAULT_UPLOAD_FORM_SETTINGS } from "@/shared/const";
-import { UploadSettingsFormFields } from "@/shared/types";
 import {
   Checkbox,
   CloseButton,
@@ -9,9 +7,9 @@ import {
 } from "@/shared/ui";
 import { Button, Card, RadioButton } from "@gravity-ui/uikit";
 import classNames from "classnames";
-import { useForm } from "react-hook-form";
 
 import styles from "./UploadSettingsForm.module.scss";
+import { useAppContext } from "@/shared/context";
 
 interface Props {
   close: () => void;
@@ -19,10 +17,7 @@ interface Props {
 }
 
 export const UploadSettingsForm = ({ close, className }: Props) => {
-  const { register, getValues } = useForm<UploadSettingsFormFields>({
-    defaultValues: DEFAULT_UPLOAD_FORM_SETTINGS,
-    mode: "onChange",
-  });
+  const { registerField: register, getFields: getValues } = useAppContext();
 
   const onSubmit = () => {
     console.log(getValues());
