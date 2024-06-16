@@ -61,9 +61,9 @@ def get_rendered_object():
     print('polygon_points: ', processed_data['polygon_points'])
 
     processed_data['polygon_points'] = map_coords_convert(processed_data['polygon_points'])
-    print('maps_coord_converted: ', processed_data['polygon_points'])
-    with open('example_request.json', 'r', encoding='utf-8') as file:
-        processed_data = json.load(file)
+    # print('maps_coord_converted: ', processed_data['polygon_points'])
+    # with open('example_request.json', 'r', encoding='utf-8') as file:
+    #     processed_data = json.load(file)
 
     light_position = {'x': 18, 'y': 18, 'z': 18}
     try:
@@ -72,7 +72,7 @@ def get_rendered_object():
         result = render_template('index.html', objects=shool.objects, light_position=light_position)
     except:
 
-        result = 'Не удалось подобрать оптимальное расположение, попробуйте снова с другими параметрами'
+        result = 'Не удалось подобрать оптимальное расположение, попробуйте снова с другими параметрами, или полигонов другой формы, для получения результата может потребоваться много попыток'
 
     # bulding.create_object_main_bulding()
 
