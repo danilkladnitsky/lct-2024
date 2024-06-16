@@ -31,9 +31,13 @@ def get_object():
     return jsonify({"result": shool.objects}), 200
 
 
-@app.route('/get-rendered-object', methods=['POST'])
+@app.route('/get-rendered-object', methods=['GET'])
 def get_rendered_object():
-    data = request.get_json()
+    data = request.args.to_dict()
+    data = json.dumps(data)
+    data = json.loads(data)
+
+    print(data)
 
     shool = Shool(data)
     shool.total_rebuild()
