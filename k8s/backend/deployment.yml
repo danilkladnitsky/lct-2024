@@ -19,11 +19,11 @@ spec:
           image: danyakladnitsky/lct-2024.backend:latest
           resources:
             limits:
-              cpu: 2
+              cpu: 1
               memory: 2048Mi
             requests:
               cpu: 1
-              memory: 128Mi
+              memory: 1576Mi
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
