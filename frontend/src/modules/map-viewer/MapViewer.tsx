@@ -17,9 +17,6 @@ export const MapViewer = ({ className }: Props) => {
   const iframeCurrent = iFrameRef.current;
   useEffect(() => {
     iframeCurrent?.addEventListener("load", () => setSceneIsLoading(false));
-    return () => {
-      iframeCurrent?.removeEventListener("load", () => setSceneIsLoading(true));
-    };
   }, [iframeCurrent]);
 
   if (!renderLink) {

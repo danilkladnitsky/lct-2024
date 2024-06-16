@@ -53,6 +53,9 @@ export const AppContextProvider: ComponentType<{ children: ReactNode }> = ({
     };
 
     setRenderLink(`${baseLink}?json=${JSON.stringify(payload)}`);
+    // setTimeout(() => {
+    //   setSceneIsLoading(false);
+    // }, 30_000);
   };
 
   return (
