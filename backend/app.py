@@ -33,15 +33,25 @@ def get_object():
 
 @app.route('/get-rendered-object', methods=['GET'])
 def get_rendered_object():
-    data = request.args.to_dict()
-    print(data)
-    data = json.dumps(data)
-    print(data)
-    data = json.loads(data)
-    print(data)
+    json_data = request.args.get('json')
+    processed_data = {}
+    if json_data:
+        data = json.loads(json_data)
+        for key, value in data.items():
+            try:
+                # Try converting the value to an integer
+                processed_data[key] = int(value)
+            except ValueError:
+                try:
+                    # Try converting the value to a float
+                    processed_data[key] = float(value)
+                except ValueError:
+                    # If conversion fails, keep the original value
+                    processed_data[key] = value
+    else:
+        return 'No JSON data received'
 
-    print(data['json'])
-    shool = Shool(data['json'])
+    shool = Shool(processed_data)
     shool.total_rebuild()
     # bulding.create_object_main_bulding()
     light_position = {'x': 18, 'y': 18, 'z': 18}
