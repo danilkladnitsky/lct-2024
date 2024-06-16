@@ -1,24 +1,43 @@
-import { Card } from "@gravity-ui/uikit";
+import { Card, Loader, Spin } from "@gravity-ui/uikit";
 import classNames from "classnames";
 
-import { Map } from "react-map-gl";
 import styles from "./MapViewer.module.scss";
+import { useEffect, useRef, useState } from "react";
 
 interface Props {
   className?: string;
 }
 
 export const MapViewer = ({ className }: Props) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const iFrameRef = useRef<HTMLIFrameElement>(null);
+
+  const iframeCurrent = iFrameRef.current;
+  useEffect(() => {
+    iframeCurrent?.addEventListener("load", () => setIsLoading(false));
+    return () => {
+      iframeCurrent?.removeEventListener("load", () => setIsLoading(true));
+    };
+  }, [iframeCurrent]);
+
   return (
     <Card className={classNames(styles.mapViewer, className)}>
-      <Map
-        initialViewState={{
-          longitude: -91.874,
-          latitude: 42.76,
-          zoom: 12,
+      {isLoading && (
+        <div className={styles.loader}>
+          <Loader size="l" />
+        </div>
+      )}
+      <iframe
+        ref={iFrameRef}
+        style={{
+          outline: 0,
+          border: "unset",
+          height: "100%",
+          width: "100%",
+          opacity: isLoading ? "0" : "1",
         }}
-        mapStyle="mapbox://styles/mapbox/satellite-v9"
-      ></Map>
+        src="https://api-lct-2024.kladnitsky.ru/render"
+      />
     </Card>
   );
 };
