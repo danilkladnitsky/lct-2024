@@ -7,7 +7,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: api.lct-2024.k8s.kladnitsky.ru
+    - host: api-lct-2024.kladnitsky.ru
       http:
         paths:
           - path: /
