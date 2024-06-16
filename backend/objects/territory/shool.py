@@ -159,6 +159,8 @@ class Shool(Territory):
             self.ground_polygon = multiply_polygon_vertices(self.ground_polygon, 2)
         if len(self.ground_polygon) < zone_number *3:
             self.ground_polygon = multiply_polygon_vertices(self.ground_polygon, zone_number)
+
+
         triangles = triangulate_polygon(self.ground_polygon)
 
         # mesh_count = 9999

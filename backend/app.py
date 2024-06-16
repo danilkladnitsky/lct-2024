@@ -1,4 +1,5 @@
 from objects.territory.shool import Shool
+from tools.map_convert import map_coords_convert
 import json
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
@@ -54,7 +55,8 @@ def get_rendered_object():
     else:
         return 'No JSON data received'
 
-    print(processed_data)
+    processed_data = processed_data[:-1]
+    processed_data['polygon_points'] = map_coords_convert(processed_data['polygon_points'])
     light_position = {'x': 18, 'y': 18, 'z': 18}
     try:
         shool = Shool(processed_data)
@@ -88,13 +90,23 @@ def index():
 def test():
     with open('example_request.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
-
+    print(data['polygon_points'])
+    data['polygon_points'] = map_coords_convert(data['polygon_points'])
+    print(data['polygon_points'])
     shool = Shool(data)
     shool.total_rebuild()
     # bulding.create_object_main_bulding()
     light_position = {'x': 18, 'y': 18, 'z': 18}
-    with open('example_responce.json', 'w') as json_file:
-        json.dump(shool.objects, json_file, indent=4)
+    shool = Shool(data)
+    shool.total_rebuild()
+    result = render_template('index.html', objects=shool.objects, light_position=light_position)
+
+    try:
+        shool = Shool(data)
+        shool.total_rebuild()
+        result = render_template('index.html', objects=shool.objects, light_position=light_position)
+    except:
+        result = 'Не удалось подобрать оптимальное расположение, попробуйте с другими параметрами'
     return render_template('index.html', objects=shool.objects, light_position=light_position)
 
 
