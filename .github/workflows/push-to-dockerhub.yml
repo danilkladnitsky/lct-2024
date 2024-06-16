@@ -105,9 +105,11 @@ jobs:
           cd lct-2024
           kubectl apply -f k8s/frontend/service.yml
           kubectl apply -f k8s/frontend/deployment.yml
+          kubectl apply -f k8s/frontend/ingress.yml
+
           kubectl apply -f k8s/backend/service.yml
           kubectl apply -f k8s/backend/deployment.yml
-          kubectl apply -f k8s/ingress.yml
+          kubectl apply -f k8s/backend/ingress.yml
 
           kubectl rollout restart -n default deployment backend-deployment
           kubectl rollout restart -n default deployment frontend-deployment
