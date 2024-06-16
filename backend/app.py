@@ -38,6 +38,9 @@ def get_rendered_object():
     if json_data:
         data = json.loads(json_data)
         for key, value in data.items():
+            if isinstance(value, list):
+                processed_data[key] = value
+                continue
             try:
                 # Try converting the value to an integer
                 processed_data[key] = int(value)
@@ -51,6 +54,7 @@ def get_rendered_object():
     else:
         return 'No JSON data received'
 
+    print(processed_data)
     shool = Shool(processed_data)
     shool.total_rebuild()
     # bulding.create_object_main_bulding()
