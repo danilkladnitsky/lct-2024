@@ -94,7 +94,7 @@ def index():
         json.dump(shool.objects, json_file, indent=4)
     return render_template('index.html', objects=shool.objects, light_position=light_position)
 
-@app.route('/')
+@app.route('/test')
 def test():
     with open('example_request.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
