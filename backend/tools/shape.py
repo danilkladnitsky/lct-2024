@@ -41,7 +41,9 @@ def calculate_T_shape(rectangle):
         (max_x - thickness_x, min_y),# Нижний левый угол верхней горизонтальной линии
         (max_x, min_y), # Нижний левый угол нижней горизонтальной линии
         (max_x, max_y), # Нижний левый угол
-    ]
+]
+
+
 
     # Создаем полигон для фигуры "П"
     p_shape_polygon = Polygon(p_shape_coords)
@@ -74,10 +76,11 @@ def generate_smaller_rectangles(rectangle, smaller_width, smaller_height):
     width = max_x - min_x
     height = max_y - min_y
 
+
     if width < height:
         # Меньшие стороны - вертикальные
-        side1_midpoint = get_midpoint((0, min_y), (min_x, max_y))
-        side2_midpoint = get_midpoint((min_x, min_y), (0, max_y))
+        side1_midpoint = get_midpoint((min_x, min_y), (min_x, max_y))
+        side2_midpoint = get_midpoint((max_x, min_y), (max_x, max_y))
         smaller_rect1 = box(side1_midpoint[0] - smaller_width / 2, side1_midpoint[1] - smaller_height / 2,
                             side1_midpoint[0] + smaller_width / 2, side1_midpoint[1] + smaller_height / 2)
         smaller_rect2 = box(side2_midpoint[0] - smaller_width / 2, side2_midpoint[1] - smaller_height / 2,

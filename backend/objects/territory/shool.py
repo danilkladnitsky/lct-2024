@@ -72,14 +72,14 @@ class Shool(Territory):
         coords = align_rectangles(coords)
 
         if self.configuration['has_junior'] and not (self.configuration['has_junior_hight_connection']):
-            self.shool_main.build(coords[2])
+            self.shool_main.build(coords[2], self.configuration)
             self.shool_jun.build(coords[1])
             self.meet_zone.build(coords[0])
             self.objects.extend(self.shool_main.objects)
             self.objects.extend(self.meet_zone.objects)
             self.objects.extend(self.shool_jun.objects)
         else:
-            self.shool_main.build(coords[1])
+            self.shool_main.build(coords[1], self.configuration)
             self.meet_zone.build(coords[0])
 
             self.objects.extend(self.shool_main.objects)

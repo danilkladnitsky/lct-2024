@@ -55,13 +55,19 @@ def get_rendered_object():
         return 'No JSON data received'
 
     print(processed_data)
-    shool = Shool(processed_data)
-    shool.total_rebuild()
-    # bulding.create_object_main_bulding()
     light_position = {'x': 18, 'y': 18, 'z': 18}
-    with open('example_responce.json', 'w') as json_file:
-        json.dump(shool.objects, json_file, indent=4)
-    return render_template('index.html', objects=shool.objects, light_position=light_position)
+    try:
+        shool = Shool(processed_data)
+        shool.total_rebuild()
+        result = render_template('index.html', objects=shool.objects, light_position=light_position)
+    except:
+        result = 'Не удалось подобрать оптимальное расположение, попробуйте с другими параметрами'
+
+    # bulding.create_object_main_bulding()
+
+    # with open('example_responce.json', 'w') as json_file:
+    #     json.dump(shool.objects, json_file, indent=4)
+    return result
 
 
 @app.route('/render')
@@ -70,6 +76,19 @@ def index():
         data = json.load(file)
 
     print(data)
+    shool = Shool(data)
+    shool.total_rebuild()
+    # bulding.create_object_main_bulding()
+    light_position = {'x': 18, 'y': 18, 'z': 18}
+    with open('example_responce.json', 'w') as json_file:
+        json.dump(shool.objects, json_file, indent=4)
+    return render_template('index.html', objects=shool.objects, light_position=light_position)
+
+@app.route('/')
+def test():
+    with open('example_request.json', 'r', encoding='utf-8') as file:
+        data = json.load(file)
+
     shool = Shool(data)
     shool.total_rebuild()
     # bulding.create_object_main_bulding()
