@@ -3,12 +3,14 @@ import classNames from "classnames";
 
 import styles from "./MapViewer.module.scss";
 import { useEffect, useRef, useState } from "react";
+import { useAppContext } from "@/shared/context";
 
 interface Props {
   className?: string;
 }
 
 export const MapViewer = ({ className }: Props) => {
+  const { formIsVisible } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
   const iFrameRef = useRef<HTMLIFrameElement>(null);
 
@@ -28,6 +30,7 @@ export const MapViewer = ({ className }: Props) => {
         </div>
       )}
       <iframe
+        key={formIsVisible}
         ref={iFrameRef}
         style={{
           outline: 0,

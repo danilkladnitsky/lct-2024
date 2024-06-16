@@ -3,16 +3,16 @@ import { Label, Text, ThemeProvider } from "@gravity-ui/uikit";
 import { BuildingMetrics, MapViewer, UploadSettingsForm } from "@/modules";
 
 import { ArrowShapeUpFromLine } from "@gravity-ui/icons";
-import { useState } from "react";
 import { ButtonIcon, Group } from "./shared/ui";
 
 import styles from "./App.module.scss";
 import { usePingBackend } from "./api/hooks/usePingBackend";
 import { APP_VERSION, APP_VERSION_LINK } from "./shared/env";
+import { useAppContext } from "./shared/context";
 
 function App() {
   const { data: isLive } = usePingBackend();
-  const [formIsVisible, setFormIsVisible] = useState(true);
+  const { formIsVisible, setFormIsVisible } = useAppContext();
 
   return (
     <ThemeProvider>

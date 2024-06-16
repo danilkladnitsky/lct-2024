@@ -1,13 +1,13 @@
 .metrics {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-    background-color: var(--g-color-base-background);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
 }
 
 .card {
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  background-color: var(--g-color-base-background);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
