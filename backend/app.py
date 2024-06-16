@@ -35,6 +35,7 @@ def get_object():
 @app.route('/get-rendered-object', methods=['GET'])
 def get_rendered_object():
     json_data = request.args.get('json')
+
     processed_data = {}
     if json_data:
         data = json.loads(json_data)
@@ -54,12 +55,15 @@ def get_rendered_object():
                     processed_data[key] = value
     else:
         return 'No JSON data received'
-    print('polygon_points: ', processed_data['polygon_points'])
-    processed_data['polygon_points'] = processed_data['polygon_points'][:-1]
-    print('polygon_points: ', processed_data['polygon_points'])
+    # print('polygon_points: ', processed_data['polygon_points'])
+    # processed_data['polygon_points'] = processed_data['polygon_points'][:-1]
+    # print('polygon_points: ', processed_data['polygon_points'])
+    #
+    # processed_data['polygon_points'] = map_coords_convert(processed_data['polygon_points'])
+    # print('maps_coord_converted: ', processed_data['polygon_points'])
+    with open('example_request.json', 'r', encoding='utf-8') as file:
+        processed_data = json.load(file)
 
-    processed_data['polygon_points'] = map_coords_convert(processed_data['polygon_points'])
-    print('maps_coord_converted: ', processed_data['polygon_points'])
     light_position = {'x': 18, 'y': 18, 'z': 18}
     try:
         shool = Shool(processed_data)
@@ -93,16 +97,17 @@ def index():
 def test():
     with open('example_request.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
+    data['polygon_points'] = data['polygon_points'][:-1]
     print(data['polygon_points'])
     data['polygon_points'] = map_coords_convert(data['polygon_points'])
     print(data['polygon_points'])
-    shool = Shool(data)
-    shool.total_rebuild()
+    # shool = Shool(data)
+    # shool.total_rebuild()
     # bulding.create_object_main_bulding()
     light_position = {'x': 18, 'y': 18, 'z': 18}
-    shool = Shool(data)
-    shool.total_rebuild()
-    result = render_template('index.html', objects=shool.objects, light_position=light_position)
+    # shool = Shool(data)
+    # shool.total_rebuild()
+    # result = render_template('index.html', objects=shool.objects, light_position=light_position)
 
     try:
         shool = Shool(data)
@@ -110,7 +115,7 @@ def test():
         result = render_template('index.html', objects=shool.objects, light_position=light_position)
     except:
         result = 'Не удалось подобрать оптимальное расположение, попробуйте с другими параметрами'
-    return render_template('index.html', objects=shool.objects, light_position=light_position)
+    return result
 
 
 if __name__ == '__main__':
