@@ -27,7 +27,7 @@ class Shool(Territory):
         'relax_zone': colors_dict['silver'],
         'ground_zone': colors_dict['chocolate']
     }
-    @retry_on_exception(4)
+    @retry_on_exception(3)
     def total_rebuild(self):
         self.objects = []
 

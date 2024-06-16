@@ -71,6 +71,7 @@ def get_rendered_object():
         shool.total_rebuild()
         result = render_template('index.html', objects=shool.objects, light_position=light_position)
     except:
+
         result = 'Не удалось подобрать оптимальное расположение, попробуйте снова с другими параметрами'
 
     # bulding.create_object_main_bulding()

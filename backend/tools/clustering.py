@@ -7,7 +7,7 @@ from tools.decorators import retry_on_exception
 def get_centroid(triangle):
     return np.mean(triangle, axis=0)
 
-@retry_on_exception(10)
+@retry_on_exception(4)
 def kmeans_clustering(triangles, target_count):
     # Вычисляем центроиды треугольников
     centroids = np.array([get_centroid(tri) for tri in triangles])

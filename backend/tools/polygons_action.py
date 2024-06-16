@@ -88,7 +88,7 @@ def polygon_area(coords):
     area = abs(area) / 2.0
     return area
 
-@retry_on_exception(10)
+@retry_on_exception(4)
 def place_rectangles(polygon_coords, rectangles):
     # Создаем полигон из входных координат
     polygon = Polygon(polygon_coords)
@@ -152,7 +152,7 @@ def place_rectangles(polygon_coords, rectangles):
 def calculate_area(polygon):
     return polygon.area
 
-@retry_on_exception(10)
+@retry_on_exception(4)
 def align_rectangles(rectangles):
     # Преобразуем входные координаты в объекты Polygon и вычисляем их площади с индексами
     polygons = [(i, Polygon(rect), calculate_area(Polygon(rect))) for i, rect in enumerate(rectangles)]
