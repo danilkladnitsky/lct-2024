@@ -116,6 +116,7 @@ def test():
         result = render_template('index.html', objects=shool.objects, light_position=light_position)
     except:
         result = 'Не удалось подобрать оптимальное расположение, попробуйте с другими параметрами'
+    print('RESULT ', result)
     return result
 
 
