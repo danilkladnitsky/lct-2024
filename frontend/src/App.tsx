@@ -15,7 +15,7 @@ function App() {
   const { formIsVisible, setFormIsVisible } = useAppContext();
 
   return (
-    <ThemeProvider>
+    <ThemeProvider theme="dark">
       <div className={styles.app}>
         <div className={styles.systemInfo}>
           <div className={styles.releaseTag}>
