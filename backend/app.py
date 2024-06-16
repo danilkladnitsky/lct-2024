@@ -1,8 +1,11 @@
 from objects.territory.shool import Shool
 import json
 from flask import Flask, render_template, request, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 
 @app.route('/', methods=['GET'])
@@ -12,7 +15,7 @@ def ping():
 
 @app.route('/healthcheck', methods=['GET'])
 def healthcheck():
-    return 'OK'
+    return jsonify({"status": "ok"}), 200
 
 
 @app.route('/get_object', methods=['POST'])
@@ -29,7 +32,7 @@ def get_object():
 
 
 @app.route('/get-rendered-object', methods=['POST'])
-def get_object():
+def get_rendered_object():
     data = request.get_json()
 
     shool = Shool(data)

@@ -7,21 +7,28 @@ import { useState } from "react";
 import { ButtonIcon, Group } from "./shared/ui";
 
 import styles from "./App.module.scss";
+import { usePingBackend } from "./api/hooks/usePingBackend";
 import { APP_VERSION, APP_VERSION_LINK } from "./shared/env";
 
 function App() {
+  const { data: isLive } = usePingBackend();
   const [formIsVisible, setFormIsVisible] = useState(true);
 
   return (
     <ThemeProvider>
       <div className={styles.app}>
-        <div className={styles.releaseTag}>
-          Версия:
-          <a target="_blank" href={APP_VERSION_LINK}>
-            <Label interactive theme="info">
-              {APP_VERSION}
-            </Label>
-          </a>
+        <div className={styles.systemInfo}>
+          <div className={styles.releaseTag}>
+            Версия:
+            <a target="_blank" href={APP_VERSION_LINK}>
+              <Label interactive theme="info">
+                {APP_VERSION}
+              </Label>
+            </a>
+          </div>
+          <div className={styles.backendLiveness}>
+            Сервер: {isLive ? "live" : "dead"}
+          </div>
         </div>
         <div className={styles.header}>
           <Group

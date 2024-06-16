@@ -14,23 +14,28 @@ server {
 }
 
 server {
-  listen 80;
-  server_name lct-2024.kladnitsky.ru;
+	listen 80;
+	listen [::]:80;
 
-  location / {
-    proxy_set_header Host            $host;
-    proxy_set_header X-Forwarded-For $remote_addr;
-    proxy_pass http://192.168.49.2;
-  }
+	server_name lct-2024._;
+
+  	location / {
+		proxy_set_header Host            $host;
+		proxy_set_header X-Forwarded-For $remote_addr;
+		proxy_pass http://192.168.49.2;
+  	}
 }
 
+
 server {
-  listen 80;
-  server_name api-lct-2024.kladnitsky.ru;
-  
-  location / {
-    proxy_set_header Host            $host;
-    proxy_set_header X-Forwarded-For $remote_addr;
-    proxy_pass http://192.168.49.2;
-  }
+	listen 80;
+	listen [::]:80;
+
+	server_name api-lct-2024._;
+	
+  	location / {
+		proxy_set_header Host            $host;
+		proxy_set_header X-Forwarded-For $remote_addr;
+		proxy_pass http://192.168.49.2;
+  	}
 }

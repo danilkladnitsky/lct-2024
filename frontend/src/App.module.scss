@@ -45,10 +45,16 @@
     z-index: 1;
 }
 
-.releaseTag {
+.systemInfo {
     position: absolute;
     top: 0px;
     right: 0px;
+
+    display: flex;
+    gap: 8px;
+}
+
+.releaseTag {
     display: flex;
     gap: 8px;
     align-items: center;
