@@ -74,8 +74,8 @@ def get_rendered_object():
         shool = Shool(processed_data)
         shool.total_rebuild()
         result = render_template('index.html', objects=shool.objects, light_position=light_position)
-    except:
-
+    except Exception as e:
+        print(f"EXCEPTION: {e}")
         result = 'Не удалось подобрать оптимальное расположение, попробуйте снова с другими параметрами, или полигонов другой формы, для получения результата может потребоваться много попыток'
 
     # bulding.create_object_main_bulding()
