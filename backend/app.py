@@ -37,7 +37,10 @@ def get_rendered_object():
     data = json.dumps(data)
     data = json.loads(data)
 
-    print(data)
+    request_polygons = data['polygon_points']
+    normalized_polygons = [request_polygons[i:i+2]
+                           for i in range(0, len(request_polygons), 2)]
+    data['polygon_points'] = normalized_polygons
 
     shool = Shool(data)
     shool.total_rebuild()
