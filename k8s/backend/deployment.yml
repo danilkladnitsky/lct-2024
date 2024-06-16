@@ -22,8 +22,8 @@ spec:
               cpu: 2
               memory: 2048Mi
             requests:
-              cpu: 1
-              memory: 128Mi
+              cpu: 2
+              memory: 1576Mi
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
@@ -32,7 +32,7 @@ spec:
               path: /healthcheck
               port: 3000
             initialDelaySeconds: 10
-            periodSeconds: 60
+            periodSeconds: 60а а
           readinessProbe:
             httpGet:
               path: /
