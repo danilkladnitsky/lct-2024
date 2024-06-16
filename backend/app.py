@@ -62,8 +62,11 @@ def get_rendered_object():
 
     processed_data['polygon_points'] = map_coords_convert(processed_data['polygon_points'])
     # print('maps_coord_converted: ', processed_data['polygon_points'])
+
+
     # with open('example_request.json', 'r', encoding='utf-8') as file:
     #     processed_data = json.load(file)
+
 
     light_position = {'x': 18, 'y': 18, 'z': 18}
     try:
