@@ -27,7 +27,7 @@ export const UploadSettingsForm = ({ close, className }: Props) => {
   return (
     <Card className={classNames(styles.form, className)}>
       <CloseButton onClick={close} className={styles.closeButton} />
-      <SectionLabel>Технико-экономические характеристики</SectionLabel>
+      <SectionLabel>Технико-экономические показатели</SectionLabel>
       <Stack className={styles.fields} gap={16}>
         <Stack>
           <TextField label="Высота этажа" {...register("level_height")} />
