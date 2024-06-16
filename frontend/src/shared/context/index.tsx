@@ -32,6 +32,7 @@ export const AppContextProvider: ComponentType<{ children: ReactNode }> = ({
   children,
 }) => {
   const [sceneIsLoading, setSceneIsLoading] = useState(false);
+  const [attempts, setAttempts] = useState(0);
   const [renderLink, setRenderLink] = useState("");
   const [formIsVisible, setFormIsVisible] = useState(true);
   const [polygon, setPolygon] = useState<
@@ -50,9 +51,11 @@ export const AppContextProvider: ComponentType<{ children: ReactNode }> = ({
     const payload = {
       ...fields,
       polygon_points: polygon,
+      attempts: attempts + 1,
     };
 
     setRenderLink(`${baseLink}?json=${JSON.stringify(payload)}`);
+    setAttempts((attempts) => attempts + 1);
     // setTimeout(() => {
     //   setSceneIsLoading(false);
     // }, 30_000);
