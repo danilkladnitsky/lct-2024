@@ -55,7 +55,7 @@ def get_rendered_object():
     else:
         return 'No JSON data received'
 
-    processed_data = processed_data[:-1]
+    processed_data['polygon_points'] = processed_data['polygon_points'][:-1]
     processed_data['polygon_points'] = map_coords_convert(processed_data['polygon_points'])
     light_position = {'x': 18, 'y': 18, 'z': 18}
     try:
