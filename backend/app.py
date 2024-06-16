@@ -23,6 +23,7 @@ def healthcheck():
 @app.route('/get_object', methods=['POST'])
 def get_object():
     data = request.get_json()
+    print('GET_OBJECT')
 
     shool = Shool(data)
     shool.total_rebuild()
@@ -36,7 +37,7 @@ def get_object():
 @app.route('/get-rendered-object', methods=['GET'])
 def get_rendered_object():
     json_data = request.args.get('json')
-
+    print('GET_RENDER_OBJECT')
     processed_data = {}
     if json_data:
         data = json.loads(json_data)
@@ -86,6 +87,8 @@ def get_rendered_object():
 
 @app.route('/render')
 def index():
+    print('RENDER')
+
     with open('example_request.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
 
@@ -100,6 +103,8 @@ def index():
 
 @app.route('/test')
 def test():
+    print('TEST')
+
     with open('example_request.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
     data['polygon_points'] = data['polygon_points'][:-1]
