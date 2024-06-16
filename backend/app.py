@@ -2,7 +2,7 @@ from objects.territory.shool import Shool
 import json
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
-
+from pprint import pprint
 app = Flask(__name__)
 
 CORS(app)
@@ -34,27 +34,20 @@ def get_object():
 @app.route('/get-rendered-object', methods=['GET'])
 def get_rendered_object():
     data = request.args.to_dict()
+    print(data)
     data = json.dumps(data)
+    print(data)
     data = json.loads(data)
-
     print(data)
 
-    print(data['polygon_points'])
-
-    request_polygons = data['polygon_points']
-    normalized_polygons = [request_polygons[i:i+2]
-                           for i in range(0, len(request_polygons), 2)]
-    data['polygon_points'] = normalized_polygons
-
-    print(normalized_polygons)
-
-    shool = Shool(data)
-    # shool.total_rebuild()
+    print(data['json'])
+    shool = Shool(data['json'])
+    shool.total_rebuild()
     # bulding.create_object_main_bulding()
-    # light_position = {'x': 18, 'y': 18, 'z': 18}
-    # with open('example_responce.json', 'w') as json_file:
-    #     json.dump(shool.objects, json_file, indent=4)
-    return 'ok'
+    light_position = {'x': 18, 'y': 18, 'z': 18}
+    with open('example_responce.json', 'w') as json_file:
+        json.dump(shool.objects, json_file, indent=4)
+    return render_template('index.html', objects=shool.objects, light_position=light_position)
 
 
 @app.route('/render')

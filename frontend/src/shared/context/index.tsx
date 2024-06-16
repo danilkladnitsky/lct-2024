@@ -40,18 +40,15 @@ export const AppContextProvider: ComponentType<{ children: ReactNode }> = ({
   });
 
   const generateScene = () => {
-    const baseLink = `${API_HOST}/get-rendered-object?`;
-    const queryParams = new URLSearchParams();
-
+    const baseLink = `${API_HOST}/get-rendered-object`;
     const fields = getValues();
 
-    Object.entries(fields).forEach(([key, value]) => {
-      queryParams.append(key, value.toString());
-    });
+    const payload = {
+      ...fields,
+      polygon_points: polygon,
+    };
 
-    queryParams.append("polygon_points", polygon.toString());
-
-    setRenderLink(`${baseLink}${queryParams.toString()}`);
+    setRenderLink(`${baseLink}?json=${JSON.stringify(payload)}`);
   };
 
   return (
