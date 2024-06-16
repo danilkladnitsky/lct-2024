@@ -35,12 +35,13 @@ function App() {
             css={{ justifyContent: "space-between", alignItems: "center" }}
           >
             <Text variant="header-1">Проектировщик зданий | Южане 2</Text>
-            <ButtonIcon
-              isLoading={formIsVisible}
-              onClick={() => setFormIsVisible(true)}
-              icon={ArrowShapeUpFromLine}
-              title="Загрузить конфигурацию"
-            />
+            {!formIsVisible && (
+              <ButtonIcon
+                onClick={() => setFormIsVisible(true)}
+                icon={ArrowShapeUpFromLine}
+                title={formIsVisible ? "Закрыть окно" : "Добавить конфигурацию"}
+              />
+            )}
           </Group>
         </div>
         <div className={styles.layout}>
