@@ -2,7 +2,7 @@ import { Card, Loader, Text } from "@gravity-ui/uikit";
 import classNames from "classnames";
 
 import styles from "./MapViewer.module.scss";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useAppContext } from "@/shared/context";
 
 interface Props {
@@ -10,16 +10,13 @@ interface Props {
 }
 
 export const MapViewer = ({ className }: Props) => {
-  const { formIsVisible, renderLink } = useAppContext();
-  const [isLoading, setIsLoading] = useState(true);
+  const { formIsVisible, renderLink, setSceneIsLoading, sceneIsLoading } =
+    useAppContext();
   const iFrameRef = useRef<HTMLIFrameElement>(null);
 
   const iframeCurrent = iFrameRef.current;
   useEffect(() => {
-    iframeCurrent?.addEventListener("load", () => setIsLoading(false));
-    return () => {
-      iframeCurrent?.removeEventListener("load", () => setIsLoading(true));
-    };
+    iframeCurrent?.addEventListener("load", () => setSceneIsLoading(false));
   }, [iframeCurrent]);
 
   if (!renderLink) {
@@ -34,11 +31,6 @@ export const MapViewer = ({ className }: Props) => {
 
   return (
     <Card className={classNames(styles.mapViewer, className)}>
-      {isLoading && (
-        <div className={styles.loader}>
-          <Loader size="l" />
-        </div>
-      )}
       <iframe
         key={formIsVisible}
         ref={iFrameRef}
@@ -47,7 +39,6 @@ export const MapViewer = ({ className }: Props) => {
           border: "unset",
           height: "100%",
           width: "100%",
-          opacity: isLoading ? "0" : "1",
         }}
         src={renderLink}
       />
