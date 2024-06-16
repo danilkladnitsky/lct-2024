@@ -14,12 +14,14 @@ interface AppContextProps {
   formIsVisible: boolean;
   polygon: UploadSettingsFormFields["polygon_points"];
   renderLink: string;
+  sceneIsLoading: boolean;
   setFormIsVisible: (value: boolean) => void;
   registerField: UseFormRegister<UploadSettingsFormFields>;
   getFields: () => UseFormGetValues<UploadSettingsFormFields>;
   watch: () => UploadSettingsFormFields;
   setPolygon: (value: UploadSettingsFormFields["polygon_points"]) => void;
   generateScene: () => void;
+  setSceneIsLoading: (value: boolean) => void;
 }
 
 const AppContext = createContext<AppContextProps>({} as AppContextProps);
@@ -29,6 +31,7 @@ export const useAppContext = () => useContext(AppContext) as AppContextProps;
 export const AppContextProvider: ComponentType<{ children: ReactNode }> = ({
   children,
 }) => {
+  const [sceneIsLoading, setSceneIsLoading] = useState(false);
   const [renderLink, setRenderLink] = useState("");
   const [formIsVisible, setFormIsVisible] = useState(true);
   const [polygon, setPolygon] = useState<
@@ -40,6 +43,7 @@ export const AppContextProvider: ComponentType<{ children: ReactNode }> = ({
   });
 
   const generateScene = () => {
+    setSceneIsLoading(true);
     const baseLink = `${API_HOST}/get-rendered-object`;
     const fields = getValues();
 
@@ -57,12 +61,14 @@ export const AppContextProvider: ComponentType<{ children: ReactNode }> = ({
         polygon,
         formIsVisible,
         renderLink,
+        sceneIsLoading,
         setPolygon,
         registerField: register,
         getFields: getValues,
         watch,
         setFormIsVisible,
         generateScene,
+        setSceneIsLoading,
       }}
     >
       {children}
