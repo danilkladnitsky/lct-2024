@@ -22,7 +22,7 @@ spec:
               cpu: 2
               memory: 2048Mi
             requests:
-              cpu: 2
+              cpu: 1.5
               memory: 1576Mi
           imagePullPolicy: Always
           ports:
