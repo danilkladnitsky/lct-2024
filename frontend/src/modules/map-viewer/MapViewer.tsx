@@ -31,11 +31,6 @@ export const MapViewer = ({ className }: Props) => {
 
   return (
     <Card className={classNames(styles.mapViewer, className)}>
-      {sceneIsLoading && (
-        <div className={styles.loader}>
-          <Loader size="l" />
-        </div>
-      )}
       <iframe
         key={formIsVisible}
         ref={iFrameRef}
@@ -44,7 +39,6 @@ export const MapViewer = ({ className }: Props) => {
           border: "unset",
           height: "100%",
           width: "100%",
-          opacity: isLoading ? "0" : "1",
         }}
         src={renderLink}
       />
