@@ -37,6 +37,8 @@ def get_rendered_object():
     data = json.dumps(data)
     data = json.loads(data)
 
+    print(data)
+
     print(data['polygon_points'])
 
     request_polygons = data['polygon_points']
@@ -47,12 +49,12 @@ def get_rendered_object():
     print(normalized_polygons)
 
     shool = Shool(data)
-    shool.total_rebuild()
+    # shool.total_rebuild()
     # bulding.create_object_main_bulding()
-    light_position = {'x': 18, 'y': 18, 'z': 18}
-    with open('example_responce.json', 'w') as json_file:
-        json.dump(shool.objects, json_file, indent=4)
-    return render_template('index.html', objects=shool.objects, light_position=light_position)
+    # light_position = {'x': 18, 'y': 18, 'z': 18}
+    # with open('example_responce.json', 'w') as json_file:
+    #     json.dump(shool.objects, json_file, indent=4)
+    return 'ok'
 
 
 @app.route('/render')
