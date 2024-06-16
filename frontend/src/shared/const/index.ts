@@ -1,8 +1,8 @@
 import { UploadSettingsFormFields } from "../types";
 
 export const DEFAULT_UPLOAD_FORM_SETTINGS: UploadSettingsFormFields = {
-  level_height: 1,
-  has_additional_ground_zone: true,
+  level_height: 0.04,
+  has_additional_ground_zone: false,
   has_additional_sport_square: false,
   has_basketball_court: false,
   has_junior: false,
@@ -13,8 +13,8 @@ export const DEFAULT_UPLOAD_FORM_SETTINGS: UploadSettingsFormFields = {
   has_relax_zone: false,
   has_swimming_pool: false,
   has_volleyball_court: false,
-  human_capacity: 5,
-  levels_num: 1,
-  square_size: 100,
+  human_capacity: 500,
+  levels_num: 2,
+  square_size: 1600,
   territory_type: "school",
 };
