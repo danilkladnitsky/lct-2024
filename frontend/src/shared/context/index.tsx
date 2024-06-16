@@ -40,7 +40,7 @@ export const AppContextProvider: ComponentType<{ children: ReactNode }> = ({
   });
 
   const generateScene = () => {
-    const baseLink = `${API_HOST}/get_rendered_object?`;
+    const baseLink = `${API_HOST}/get-rendered-object?`;
     const queryParams = new URLSearchParams();
 
     const fields = getValues();

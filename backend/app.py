@@ -53,6 +53,7 @@ def index():
     with open('example_request.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
 
+    print(data)
     shool = Shool(data)
     shool.total_rebuild()
     # bulding.create_object_main_bulding()
