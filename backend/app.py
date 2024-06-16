@@ -66,9 +66,9 @@ def get_rendered_object():
 
 
     with open('example_request.json', 'r', encoding='utf-8') as file:
-        processed_data = json.load(file)['polygon_points']
+        data = json.load(file)
 
-
+    processed_data['polygon_points'] = data['polygon_points']
     light_position = {'x': 18, 'y': 18, 'z': 18}
     try:
         shool = Shool(processed_data)
