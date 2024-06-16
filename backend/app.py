@@ -54,9 +54,12 @@ def get_rendered_object():
                     processed_data[key] = value
     else:
         return 'No JSON data received'
-
+    print('polygon_points: ', processed_data['polygon_points'])
     processed_data['polygon_points'] = processed_data['polygon_points'][:-1]
+    print('polygon_points: ', processed_data['polygon_points'])
+
     processed_data['polygon_points'] = map_coords_convert(processed_data['polygon_points'])
+    print('maps_coord_converted: ', processed_data['polygon_points'])
     light_position = {'x': 18, 'y': 18, 'z': 18}
     try:
         shool = Shool(processed_data)
