@@ -2,16 +2,17 @@ from objects.territory.shool import Shool
 from tools.map_convert import map_coords_convert
 import json
 from flask import Flask, render_template, request, jsonify
-from flask_cors import CORS
+
 from pprint import pprint
 app = Flask(__name__)
 
+from flask_cors import CORS
 CORS(app)
-
-
-@app.route('/', methods=['GET'])
-def ping():
-    return 'Hello World'
+#
+#
+# @app.route('/', methods=['GET'])
+# def ping():
+#     return 'Hello World'
 
 
 @app.route('/healthcheck', methods=['GET'])
@@ -55,12 +56,12 @@ def get_rendered_object():
                     processed_data[key] = value
     else:
         return 'No JSON data received'
-    # print('polygon_points: ', processed_data['polygon_points'])
-    # processed_data['polygon_points'] = processed_data['polygon_points'][:-1]
-    # print('polygon_points: ', processed_data['polygon_points'])
-    #
-    # processed_data['polygon_points'] = map_coords_convert(processed_data['polygon_points'])
-    # print('maps_coord_converted: ', processed_data['polygon_points'])
+    print('polygon_points: ', processed_data['polygon_points'])
+    processed_data['polygon_points'] = processed_data['polygon_points'][:-1]
+    print('polygon_points: ', processed_data['polygon_points'])
+
+    processed_data['polygon_points'] = map_coords_convert(processed_data['polygon_points'])
+    print('maps_coord_converted: ', processed_data['polygon_points'])
     with open('example_request.json', 'r', encoding='utf-8') as file:
         processed_data = json.load(file)
 
