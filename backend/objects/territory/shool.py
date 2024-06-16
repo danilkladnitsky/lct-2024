@@ -37,6 +37,8 @@ class Shool(Territory):
         self.build_main_zone()
         self.build_sport_zone()
 
+        print('End of total rebuild')
+
     def build_main_zone(self):
         current_zone = None
         for zone in self.zone_list:
