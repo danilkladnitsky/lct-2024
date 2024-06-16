@@ -49,7 +49,9 @@ export const AppContextProvider: ComponentType<{ children: ReactNode }> = ({
       queryParams.append(key, value.toString());
     });
 
-    queryParams.append("polygon_points", polygon.toString());
+    polygon.map((polygon) => {
+      queryParams.append("polygon_points", polygon[0].toString());
+    });
 
     setRenderLink(`${baseLink}${queryParams.toString()}`);
   };
