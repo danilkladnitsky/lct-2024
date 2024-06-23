@@ -10,8 +10,7 @@ interface Props {
 }
 
 export const MapViewer = ({ className }: Props) => {
-  const { formIsVisible, renderLink, setSceneIsLoading, sceneIsLoading } =
-    useAppContext();
+  const { formIsVisible, renderLink, setSceneIsLoading } = useAppContext();
   const iFrameRef = useRef<HTMLIFrameElement>(null);
 
   const iframeCurrent = iFrameRef.current;

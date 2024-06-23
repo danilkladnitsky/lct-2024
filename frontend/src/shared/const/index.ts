@@ -1,7 +1,7 @@
 import { UploadSettingsFormFields } from "../types";
 
 export const DEFAULT_UPLOAD_FORM_SETTINGS: UploadSettingsFormFields = {
-  level_height: 0.04,
+  level_height: 4,
   has_additional_ground_zone: false,
   has_additional_sport_square: false,
   has_basketball_court: false,
@@ -17,4 +17,5 @@ export const DEFAULT_UPLOAD_FORM_SETTINGS: UploadSettingsFormFields = {
   levels_num: 2,
   square_size: 1600,
   territory_type: "school",
+  polygon_points: [],
 };
