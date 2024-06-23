@@ -3,6 +3,7 @@ import {
   ReactNode,
   createContext,
   useContext,
+  useEffect,
   useState,
 } from "react";
 import { UploadSettingsFormFields } from "../types";
@@ -43,22 +44,22 @@ export const AppContextProvider: ComponentType<{ children: ReactNode }> = ({
     mode: "onChange",
   });
 
+  const form = watch();
+
   const generateScene = () => {
     setSceneIsLoading(true);
     const baseLink = `${API_HOST}/get-rendered-object`;
-    const fields = getValues();
+    const { level_height, ...fields } = getValues();
 
     const payload = {
       ...fields,
+      level_height: Math.floor(level_height / 100),
       polygon_points: polygon,
       attempts: attempts + 1,
     };
 
     setRenderLink(`${baseLink}?json=${JSON.stringify(payload)}`);
     setAttempts((attempts) => attempts + 1);
-    // setTimeout(() => {
-    //   setSceneIsLoading(false);
-    // }, 30_000);
   };
 
   return (
