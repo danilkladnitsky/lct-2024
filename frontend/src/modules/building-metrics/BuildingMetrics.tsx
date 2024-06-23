@@ -37,7 +37,7 @@ export const BuildingMetrics = ({ className }: Props) => {
         <Metric label="Количество этажей:" value={levels_num} />
         <Metric label="Количество мест:" value={human_capacity} />
         <Metric label="Общая площадь здания (м2):" value={square_size} />
-        <Metric label="Высота здания, (м.):" value={level_height} />
+        <Metric label="Высота здания, (мм.):" value={level_height} />
       </div>
     </Card>
   );

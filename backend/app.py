@@ -63,7 +63,7 @@ def get_rendered_object():
     # print('polygon_points: ', processed_data['polygon_points'])
 
     processed_data['polygon_points'] = map_coords_convert(processed_data['polygon_points'])
-    processed_data['level_height'] = processed_data['level_height']
+    processed_data['level_height'] = processed_data['level_height']/100000
     print('maps_coord_converted: ', processed_data['polygon_points'])
 
 
