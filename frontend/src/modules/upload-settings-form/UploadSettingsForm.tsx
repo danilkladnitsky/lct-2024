@@ -30,9 +30,9 @@ export const UploadSettingsForm = ({ close, className }: Props) => {
       <SectionLabel>Технико-экономические показатели</SectionLabel>
       <Stack className={styles.fields} gap={16}>
         <Stack>
-          <TextField label="Высота этажа" {...register("level_height")} />
+          <TextField label="Высота этажа (м)" {...register("level_height")} />
           <TextField label="Количество этажей" {...register("levels_num")} />
-          <TextField label="Площадь" {...register("square_size")} />
+          <TextField label="Площадь (м2)" {...register("square_size")} />
           <TextField label="Вместимость" {...register("human_capacity")} />
         </Stack>
         <Stack>
