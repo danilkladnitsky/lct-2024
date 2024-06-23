@@ -25,7 +25,7 @@ def map_coords_convert(map_coords):
         min_lat = map_coords[i][1]  if  map_coords[i][1] < min_lat else min_lat
     # print(min_lon, min_lat)
     for i in range(len(map_coords)):
-        map_coords[i][0], map_coords[i][1] = round( map_coords[i][0] - min_lon, 2), round(map_coords[i][1] - min_lat,2)
+        map_coords[i][0], map_coords[i][1] = round( map_coords[i][0] - min_lon, 6), round(map_coords[i][1] - min_lat,6)
 
     return map_coords
 
