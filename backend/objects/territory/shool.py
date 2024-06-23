@@ -27,7 +27,7 @@ class Shool(Territory):
         'relax_zone': colors_dict['silver'],
         'ground_zone': colors_dict['chocolate']
     }
-    @retry_on_exception(3)
+    @retry_on_exception(5)
     def total_rebuild(self):
         self.objects = []
 
@@ -155,8 +155,8 @@ class Shool(Territory):
         # print(triangles)
 
         # target_count = 3
-        if self.configuration['has_relax_zone']:
-            zone_number +=1
+        # if self.configuration['has_relax_zone']:
+        #     zone_number +=1
         if len(self.ground_polygon)%2 == 1:
             self.ground_polygon = multiply_polygon_vertices(self.ground_polygon, 2)
         if len(self.ground_polygon) < zone_number *3:

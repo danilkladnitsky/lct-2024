@@ -88,7 +88,7 @@ def polygon_area(coords):
     area = abs(area) / 2.0
     return area
 
-@retry_on_exception(4)
+@retry_on_exception(5)
 def place_rectangles(polygon_coords, rectangles):
     # Создаем полигон из входных координат
     polygon = Polygon(polygon_coords)
@@ -101,19 +101,6 @@ def place_rectangles(polygon_coords, rectangles):
     # Стартовые координаты для размещения
     start_x, start_y = polygon.bounds[0], polygon.bounds[1]
 
-    # Функция для попытки размещения прямоугольника в полигоне с разными углами
-    def try_place_rectangle(polygon, rect_width, rect_height):
-        minx, miny, maxx, maxy = polygon.bounds
-        for angle in range(0, 360, 10):  # Пробуем углы с шагом в 10 градусов
-            for _ in range(100):  # Попытки разместить прямоугольник
-                rect_x = random.uniform(minx, maxx - rect_width)
-                rect_y = random.uniform(miny, maxy - rect_height)
-                rect = box(rect_x, rect_y, rect_x + rect_width, rect_y + rect_height)
-                rect = rotate(rect, angle, origin='centroid')
-                if polygon.contains(rect):
-                    return rect
-        return None
-
     # Функция для попытки размещения прямоугольника состыкованным
     def try_place_rectangle_stacked(polygon, rect_width, rect_height, current_x, current_y):
         rect = box(current_x, current_y, current_x + rect_width, current_y + rect_height)
@@ -123,27 +110,33 @@ def place_rectangles(polygon_coords, rectangles):
 
     current_x, current_y = start_x, start_y
     max_y_in_row = start_y
+    step = 1  # шаг смещения для поиска нового места
 
     for index, (rect_width, rect_height) in enumerate(rectangles):
-        rect = try_place_rectangle_stacked(polygon, rect_width, rect_height, current_x, current_y)
-        if rect:
-            placed_rectangles[index] = rect
-            polygon = polygon.difference(rect)
-            current_x += rect_width
-            max_y_in_row = max(max_y_in_row, current_y + rect_height)
-
-            # Если мы достигли края полигона по X, переходим на новую строку
-            if current_x >= polygon.bounds[2]:
-                current_x = start_x
-                current_y = max_y_in_row
-        else:
-            # Попробуем разместить прямоугольник произвольным образом
-            rect = try_place_rectangle(polygon, rect_width, rect_height)
+        placed = False
+        while not placed:
+            rect = try_place_rectangle_stacked(polygon, rect_width, rect_height, current_x, current_y)
             if rect:
                 placed_rectangles[index] = rect
                 polygon = polygon.difference(rect)
+                current_x += rect_width
+                max_y_in_row = max(max_y_in_row, current_y + rect_height)
+                placed = True
+
+                # Если мы достигли края полигона по X, переходим на новую строку
+                if current_x >= polygon.bounds[2]:
+                    current_x = start_x
+                    current_y = max_y_in_row
             else:
-                raise ValueError(f"Не удалось разместить прямоугольник размером {(rect_width, rect_height)}")
+                # Смещаем текущие координаты и пробуем снова
+                current_x += step
+                if current_x >= polygon.bounds[2]:
+                    current_x = start_x
+                    current_y += step
+
+                # Если мы достигли края полигона по Y, значит, не можем разместить прямоугольник
+                if current_y >= polygon.bounds[3]:
+                    raise ValueError(f"Не удалось разместить прямоугольник размером {(rect_width, rect_height)}")
 
     # Возвращаем координаты размещенных прямоугольников в том же порядке, что и на входе
     return [list(rect.exterior.coords)[:-1] for rect in placed_rectangles]

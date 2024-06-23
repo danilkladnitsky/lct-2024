@@ -11,7 +11,7 @@ import json
 #             generate_polygon(12, 2, (0,0)),
 #             [(0, 0), (0.5, 1.5), (1.5, 2), (2.5, 1.5), (3, 0.5), (2, -0.5), (1, -1)]]
 #
-# ground_polygon = generate_random_polygon(13, x_range=(0, 5), y_range=(0, 4))
+ground_polygon = generate_random_polygon(13, x_range=(0, 5), y_range=(0, 4))
 
 
 with open('example_request.json', 'r', encoding='utf-8') as file:
