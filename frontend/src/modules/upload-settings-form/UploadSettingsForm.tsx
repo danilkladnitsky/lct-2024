@@ -106,7 +106,7 @@ export const UploadSettingsForm = ({ close, className }: Props) => {
               {...register("has_relax_zone")}
             />
             <Checkbox
-              label="Наличие хозяйственной зоны"
+              label="Наличие учебно-опытной зоны"
               {...register("has_additional_ground_zone")}
             />
           </Stack>
