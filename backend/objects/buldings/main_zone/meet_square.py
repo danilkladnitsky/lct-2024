@@ -3,7 +3,7 @@ from tools.colors import colors_dict
 
 
 class MeetSquare(Building):
-    color = colors_dict['burlywood']
+    color = colors_dict['meet_squre']
 
     def build(self, coords):
 

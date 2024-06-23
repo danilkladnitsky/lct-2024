@@ -14,7 +14,7 @@ camera.position.y = 2.5;
 const ambientLight = new THREE.AmbientLight(0x404040); // Окружающий свет
 scene.add(ambientLight);
 
-const pointLight = new THREE.PointLight(0xffffff, 1, 100);
+const pointLight = new THREE.PointLight(0xffffff, 1.5, 100);
 pointLight.position.set(lightPosition.x, lightPosition.y, lightPosition.z);
 scene.add(pointLight);
 
@@ -62,10 +62,11 @@ function createObject(object) {
     scene.add(mesh);
 
     // Добавление контуров
-//    const edges = new THREE.EdgesGeometry(geometry);
-//    const line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0x000000 }));
-//    line.position.set(object.position.x, object.position.y, object.position.z);
-//    scene.add(line);
+    const edges = new THREE.EdgesGeometry(geometry);
+    const line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0x000000 }));
+    line.position.set(object.position.x, object.position.y, object.position.z);
+    line.rotation.x = Math.PI / 2;
+    scene.add(line);
 }
 
 

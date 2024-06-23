@@ -44,7 +44,22 @@ colors_dict = {
     'chartreuse': '0x7fff00',
     'chocolate': '0xd2691e',
     'coral': '0xff7f50',
-    'cornflowerblue': '0x6495ed'
+    'cornflowerblue': '0x6495ed',
+
+    'junior': '0x009099',
+    'shool': '0xffffff',
+    'meet_squre':'0xffc5a6',
+
+    'football': '0x97ca47',
+    'basketball': '0x006e37',
+    'volleyball': '0xffa1a9',
+    'race': '0x00b79f',
+
+    'main_zone': '0x37d8cf',
+    'sport_zone': '0xff385c',
+    'relax_zone': '0xe3ebd4',
+    'ground_zone': '0xccd4bf',
+
 }
 
 

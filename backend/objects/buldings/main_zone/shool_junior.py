@@ -3,7 +3,7 @@ from tools.colors import colors_dict
 
 
 class ShoolJunior(Building):
-    color = colors_dict['orange']
+    color = colors_dict['junior']
 
     def build(self, coords):
 

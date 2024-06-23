@@ -4,7 +4,7 @@ from tools.colors import colors_dict
 
 
 class SportRace(Building):
-    color = colors_dict['chocolate']
+    color = colors_dict['race']
 
     def build(self, coords):
 

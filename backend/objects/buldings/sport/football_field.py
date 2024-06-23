@@ -3,7 +3,7 @@ from tools.colors import colors_dict
 from tools.shape import generate_smaller_rectangles
 
 class FootBallField(Building):
-    color = colors_dict['olive']
+    color = colors_dict['football']
     gate_color = colors_dict['white']
 
     def build(self, coords):

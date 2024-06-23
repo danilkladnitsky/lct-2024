@@ -4,7 +4,7 @@ from tools.colors import colors_dict
 
 
 class VolleyballCourt(Building):
-    color = colors_dict['cyan']
+    color = colors_dict['volleyball']
 
     def build(self, coords):
 

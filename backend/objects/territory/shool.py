@@ -21,11 +21,10 @@ class Shool(Territory):
 
 
     zone_color_dict = {
-        'main_zone': colors_dict['blue'],
-        'sport_zone': colors_dict['green'],
-        'meet_zone': colors_dict['navy'],
-        'relax_zone': colors_dict['silver'],
-        'ground_zone': colors_dict['chocolate']
+        'main_zone': colors_dict['main_zone'],
+        'sport_zone': colors_dict['sport_zone'],
+        'relax_zone': colors_dict['relax_zone'],
+        'ground_zone': colors_dict['ground_zone']
     }
     @retry_on_exception(5)
     def total_rebuild(self):

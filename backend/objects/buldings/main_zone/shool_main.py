@@ -3,7 +3,7 @@ from tools.colors import colors_dict
 from tools.shape import calculate_T_shape
 
 class ShoolMain(Building):
-    color = colors_dict['gray']
+    color = colors_dict['shool']
     door_color = colors_dict['red']
 
 
