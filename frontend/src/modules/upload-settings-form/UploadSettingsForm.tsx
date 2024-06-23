@@ -60,53 +60,53 @@ export const UploadSettingsForm = ({ close, className }: Props) => {
           <Stack css={{ marginLeft: 16, marginTop: 8 }}>
             <SectionLabel>Настройки корпуса младшей школы</SectionLabel>
             <Checkbox
-              label="Наличие корпуса младших классов"
+              label="Корпус младших классов"
               {...register("has_junior")}
             />
             <Checkbox
-              label="Корпус старших и младших классов соединены"
+              label="Корпусы старших и младших классов соединены"
               {...register("has_junior_hight_connection")}
             />
             <Checkbox
-              label="Наличие отдельного актового зала в младшей школе"
+              label="Отдельный актовый зал в младшей школе"
               {...register("has_junior_assembly_hall")}
             />
             <Checkbox
-              label="Наличие отдельной столовой в младшей школе"
+              label="Отдельная столовая в младшей школе"
               {...register("has_junior_dining_room")}
             />
             <Checkbox
-              label="Наличие отдельного спортзала в младшей школе"
+              label="Отдельный спортзал в младшей школе"
               {...register("has_junior_gym")}
             />
           </Stack>
           <Stack css={{ marginLeft: 16, marginTop: 8 }}>
-            <SectionLabel>Настройки спорт-зоны</SectionLabel>
+            <SectionLabel>Настройки спортивной зоны</SectionLabel>
             <Checkbox
-              label="Наличие бассейна"
+              label="Бассейна"
               {...register("has_swimming_pool")}
             />
             <Checkbox
-              label="Наличие волейбольной площадки"
+              label="Волейбольной площадка"
               {...register("has_volleyball_court")}
             />
             <Checkbox
-              label="Наличие баскетбольной площадки"
+              label="Баскетбольная площадка"
               {...register("has_basketball_court")}
             />
             <Checkbox
-              label="Наличие турниковой зоны"
+              label="Площадка с тренажёрами"
               {...register("has_additional_sport_square")}
             />
           </Stack>
           <Stack css={{ marginLeft: 16, marginTop: 8 }}>
             <SectionLabel>Прочее</SectionLabel>
             <Checkbox
-              label="Наличие зоны отдыха"
+              label="Зона отдыха"
               {...register("has_relax_zone")}
             />
             <Checkbox
-              label="Наличие учебно-опытной зоны"
+              label="Учебно-опытная зона"
               {...register("has_additional_ground_zone")}
             />
           </Stack>
