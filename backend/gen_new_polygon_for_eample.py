@@ -17,7 +17,7 @@ ground_polygon = generate_random_polygon(13, x_range=(0, 5), y_range=(0, 4))
 with open('example_request.json', 'r', encoding='utf-8') as file:
     data = json.load(file)
 
-data['polygon_points'] = generate_polygon(12, 3, (0,0))
+data['polygon_points'] = generate_polygon(12, 2, (0,0))
 
 with open('example_request.json', 'w', encoding='utf-8') as file:
     json.dump(data, file, indent = 4)
